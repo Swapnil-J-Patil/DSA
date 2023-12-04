@@ -321,4 +321,21 @@ public class LeetcodeProblems {
 
         return head;
     }
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode start = new ListNode(0);
+        start.next = head;
+        ListNode fast = start;
+        ListNode slow = start;
+        for (int i=1; i<=n; i++) {
+            fast = fast.next;
+        }
+        //here fast will be at n distance from slow
+        while(fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        //when fast reach end then slow will be at desired location
+        slow.next = slow.next.next;
+        return start.next;
+    }
 }
